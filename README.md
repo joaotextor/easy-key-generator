@@ -28,7 +28,7 @@ npm install easy-key-generator
 ```js
 const KeyGenerator = require("easy-key-generator");
 
-or;
+or
 
 import KeyGenerator from "easy-key-generator";
 ```
