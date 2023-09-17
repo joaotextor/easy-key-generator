@@ -22,17 +22,17 @@ npm install easy-key-generator
 
 ## Import
 
-```
-const KeyGenerator = require("easy-key-generator")
+```js
+const KeyGenerator = require("easy-key-generator");
 
-or
+or;
 
-import KeyGenerator from "easy-key-generator"
+import KeyGenerator from "easy-key-generator";
 ```
 
 ## Setup
 
-```
+```js
 const myKeyGenerator = new KeyGenerator(5); // Setup to generate a 5 character key
 
 const generatedKey = myKeyGenerator.generate();
@@ -42,8 +42,8 @@ console.log(generatedKey); // ["H52N4"]
 
 Alternatively, you can use:
 
-```
-const generatedKey = new KeyGenerator(5).generate()
+```js
+const generatedKey = new KeyGenerator(5).generate();
 ```
 
 ## Special Properties
