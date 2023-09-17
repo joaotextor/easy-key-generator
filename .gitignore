@@ -1,0 +1,4 @@
+dist
+node_modules
+easy-key-generator*
+test.js
