@@ -1,6 +1,6 @@
 {
   "name": "easy-key-generator",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "Easy library for generating secret keys. It supports various features like groups, separators, key format, and the possibility of generating multiples keys at once.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -16,6 +16,10 @@
   },
   "author": "João Textor",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joaotextor/easy-key-generator"
+  },
   "devDependencies": {
     "@changesets/cli": "^2.26.2",
     "@typescript-eslint/eslint-plugin": "^6.7.0",

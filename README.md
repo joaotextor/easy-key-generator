@@ -10,8 +10,11 @@ This library enables you just that.
 With easy-key-generator you can generate keys like these:
 
 `SBWPR-G6NOE-ZAQBO` (Letters and Numbers)
+
 `26960-74535-48967-85294` (Numbers Only)
+
 `YUNIE-QHQDT` (Letters Only)
+
 `A37B1-7733F-CBC20` (Using Hexadecimal characters)
 
 ## Quick setup
