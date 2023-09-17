@@ -53,7 +53,15 @@ const generatedKey = new KeyGenerator(5).generate();
 
 These are the optional properties you can pass as a second parameter to the constructor:
 
-> `charaterType` > `groups` > `groupSeparator` > `groupFormat` > `numberOfKeys`
+> `charaterType`
+
+> `groups` 
+
+> `groupSeparator` 
+
+> `groupFormat` 
+
+> `numberOfKeys`
 
 `characterType` can only be assigned with the following values:`"Letters"`, `"Numbers"`, `"LettersAndNumbers"` (default), `"HexChar"`
 
