@@ -112,10 +112,11 @@ export default class CodeGenerator implements ICodeGenerator {
     if (
       groupFormat &&
       (characters === charactersByType.Letters ||
-        characters === charactersByType.Numbers)
+        characters === charactersByType.Numbers ||
+        characters === charactersByType.HexCharacters)
     ) {
       throw new Error(
-        "The grouptFormat can only be used with 'LettersAndNumbers' or 'HexChar' charaterTypes!",
+        "The grouptFormat can only be used with 'LettersAndNumbers' charaterTypes!",
       );
     }
 

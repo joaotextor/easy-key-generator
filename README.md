@@ -63,7 +63,7 @@ These are the optional properties you can pass as a second parameter to the cons
 
 ```js
 const props = {
-  characterType: "HexChar", //Default is LettersAndNumbers
+  characterType: "LettersAndNumbers", //Default is LettersAndNumbers
   groups: 3, // Default is 1
   groupSeparator: "-", // Default is "-"
   groupFormat: "LLNLN", // L: Letters | N: Numbers,
@@ -75,8 +75,8 @@ const myKeys = new KeyGenerator(5, props).generate();
 console.log(myKeys);
 /* Will Output and array of 10 keys
  * containing 3 groups with the group
- * format LLNLN and using only
- * hexadecimal characters
+ * format LLNLN and using letters
+ * and numbers
 [
   'JO7I5-PN2U3-DA5Y4',
   'NK7S1-CS6F7-IE4T5',
