@@ -9,7 +9,7 @@ export interface ICodeGenerator {
   groupSeparator?: string;
   numberOfKeys?: number;
   groupFormat?: string;
-  generate: () => string[] | string;
+  generate: () => string[];
 }
 
 export type Props = {
@@ -25,7 +25,7 @@ export default class CodeGenerator implements ICodeGenerator {
   private _characterType: characterType;
   private _groupSeparator: separatorType;
   private _groups: number;
-  private _groupFormat?: string | null;
+  private _groupFormat?: string;
   private _numberOfKeys?: number;
   constructor(numberOfCharacters: number, props: Props = {} as Props) {
     this._numberOfCharacters = numberOfCharacters;
@@ -36,7 +36,7 @@ export default class CodeGenerator implements ICodeGenerator {
     this._groupFormat = props?.groupFormat;
   }
 
-  public generate(): string[] | string {
+  public generate(): string[] {
     let characters = CodeGenerator.selectCharater(this._characterType);
     const numberOfCharacters =
       this._groupFormat?.length || this._numberOfCharacters;
@@ -102,7 +102,10 @@ export default class CodeGenerator implements ICodeGenerator {
     return characters;
   }
 
-  private static validateGroupFormat(groupFormat: string, characters: string) {
+  private static validateGroupFormat(
+    groupFormat: string,
+    characters: string,
+  ): string | void {
     const regexStatement = /[N|L]/g;
 
     if (groupFormat == null || groupFormat == undefined) {
