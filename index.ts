@@ -4,27 +4,22 @@ import { separatorType } from "./utils/types/separatorType";
 
 export interface ICodeGenerator {
   numberOfCharacters?: number;
-  characterType?: characterType;
-  groups?: number;
-  groupSeparator?: string;
-  numberOfKeys?: number;
-  groupFormat?: string;
   generate: () => string[];
 }
 
 export type Props = {
-  characterType: characterType;
-  groups: number;
-  groupSeparator: separatorType;
-  numberOfKeys: number;
+  characterType?: characterType;
+  groups?: number;
+  groupSeparator?: separatorType;
+  numberOfKeys?: number;
   groupFormat?: string;
 };
 
 export default class CodeGenerator implements ICodeGenerator {
   private _numberOfCharacters: number;
-  private _characterType: characterType;
-  private _groupSeparator: separatorType;
-  private _groups: number;
+  private _characterType?: characterType;
+  private _groupSeparator?: separatorType;
+  private _groups?: number;
   private _groupFormat?: string;
   private _numberOfKeys?: number;
   constructor(numberOfCharacters: number, props: Props = {} as Props) {
@@ -37,7 +32,7 @@ export default class CodeGenerator implements ICodeGenerator {
   }
 
   public generate(): string[] {
-    let characters = CodeGenerator.selectCharater(this._characterType);
+    let characters = CodeGenerator.selectCharater(this._characterType!);
     const numberOfCharacters =
       this._groupFormat?.length || this._numberOfCharacters;
 
@@ -68,7 +63,7 @@ export default class CodeGenerator implements ICodeGenerator {
           );
         }
 
-        if (this._groups - groups != 0) {
+        if (this._groups! - groups != 0) {
           result += this._groupSeparator;
         }
       }
@@ -79,7 +74,7 @@ export default class CodeGenerator implements ICodeGenerator {
     return keys;
   }
 
-  private static selectCharater(char: string): string {
+  private static selectCharater(char: characterType): string {
     let characters: string;
     switch (char) {
       case charType.Letters:
@@ -105,11 +100,10 @@ export default class CodeGenerator implements ICodeGenerator {
   private static validateGroupFormat(
     groupFormat: string,
     characters: string,
-  ): string | void {
-    const regexStatement = /[N|L]/g;
-
+  ): void {
     if (groupFormat == null || groupFormat == undefined) {
-      return "Group Format is not defined, skipping validation.";
+      console.log("Group Format is not defined, skipping validation.");
+      return;
     }
 
     if (
@@ -119,11 +113,14 @@ export default class CodeGenerator implements ICodeGenerator {
         characters === charactersByType.HexCharacters)
     ) {
       throw new Error(
-        "The grouptFormat can only be used with 'LettersAndNumbers' charaterTypes!",
+        "The grouptFormat can only be used with 'LettersAndNumbers' charaterType!",
       );
     }
 
-    if (groupFormat.match(regexStatement)?.length != groupFormat.length) {
+    const regexStatement = /[N|L]/g;
+    const matchLetters = groupFormat.match(regexStatement);
+
+    if (matchLetters!.length != groupFormat.length) {
       throw new Error(
         "The group format can only contain letters 'L' and numbers 'N'",
       );
