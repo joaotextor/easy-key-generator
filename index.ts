@@ -32,15 +32,12 @@ export default class CodeGenerator implements ICodeGenerator {
   }
 
   public generate(): string[] {
-    let characters = CodeGenerator.selectCharater(this._characterType!);
-    const numberOfCharacters =
-      this._groupFormat?.length || this._numberOfCharacters;
+    let characters = charactersByType[this._characterType!];
+    const numberOfCharacters = this._groupFormat?.length || this._numberOfCharacters;
 
     CodeGenerator.validateGroupFormat(this._groupFormat!, characters);
 
-    const groupFormatArr = this._groupFormat
-      ? Array.from(this._groupFormat!)
-      : [];
+    const groupFormatArr = this._groupFormat ? Array.from(this._groupFormat!) : [];
 
     let keys: string[] = [];
 
@@ -54,13 +51,11 @@ export default class CodeGenerator implements ICodeGenerator {
 
             characters =
               char === "L"
-                ? (characters = CodeGenerator.selectCharater(charType.Letters))
-                : (characters = CodeGenerator.selectCharater(charType.Numbers));
+                ? (characters = charactersByType[charType.Letters])
+                : (characters = charactersByType[charType.Numbers]);
           }
 
-          result += characters.charAt(
-            Math.floor(Math.random() * characters.length),
-          );
+          result += characters.charAt(Math.floor(Math.random() * characters.length));
         }
 
         if (this._groups! - groups != 0) {
@@ -75,55 +70,24 @@ export default class CodeGenerator implements ICodeGenerator {
   }
 
   private static selectCharater(char: characterType): string {
-    let characters: string;
-    switch (char) {
-      case charType.Letters:
-        characters = charactersByType.Letters;
-        break;
-      case charType.LettersAndNumbers:
-        characters = charactersByType.LettersAndNumbers;
-        break;
-      case charType.Numbers:
-        characters = charactersByType.Numbers;
-        break;
-      case charType.HexChar:
-        characters = charactersByType.HexCharacters;
-        break;
-      default:
-        characters = charactersByType.LettersAndNumbers;
-        break;
-    }
-
-    return characters;
+    return charactersByType[char];
   }
 
-  private static validateGroupFormat(
-    groupFormat: string,
-    characters: string,
-  ): void {
-    if (groupFormat == null || groupFormat == undefined) {
+  private static validateGroupFormat(groupFormat: string, characters: string): void {
+    if (!groupFormat) {
       console.log("Group Format is not defined, skipping validation.");
       return;
     }
 
-    if (
-      groupFormat &&
-      (characters === charactersByType.Letters ||
-        characters === charactersByType.Numbers ||
-        characters === charactersByType.HexCharacters)
-    ) {
-      throw new Error(
-        "The grouptFormat can only be used with 'LettersAndNumbers' charaterType!",
-      );
+    if (characters != charactersByType.LettersAndNumbers) {
+      throw new Error("The grouptFormat can only be used with 'LettersAndNumbers' charaterType!");
     }
 
     const regexStatement = /[N|L]/g;
     const matchLetters = groupFormat.match(regexStatement);
 
     if (matchLetters!.length != groupFormat.length) {
-      throw new Error(
-        "The group format can only contain letters 'L' and numbers 'N'",
-      );
+      throw new Error("The group format can only contain letters 'L' and numbers 'N'");
     }
   }
 }
