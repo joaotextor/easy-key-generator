@@ -1,1 +1,1 @@
-export type separatorType = "-" | "_" | "." | " ";
+export type separatorType = "-" | "_" | "/" | "." | " ";
