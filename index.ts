@@ -69,10 +69,6 @@ export default class CodeGenerator implements ICodeGenerator {
     return keys;
   }
 
-  private static selectCharater(char: characterType): string {
-    return charactersByType[char];
-  }
-
   private static validateGroupFormat(groupFormat: string, characters: string): void {
     if (!groupFormat) {
       console.log("Group Format is not defined, skipping validation.");
