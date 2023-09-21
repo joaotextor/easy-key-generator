@@ -65,7 +65,7 @@ These are the optional properties you can pass as a second parameter to the cons
 
 `characterType` can only be assigned with the following values:`"Letters"`, `"Numbers"`, `"LettersAndNumbers"` (default), `"HexChar"`
 
-`separatorType` can only be assigned with the following values: `"-"` (default), `"_"`, `"."` and `" "`.
+`separatorType` can only be assigned with the following values: `"-"` (default), `"_"`, `"/"` `"."` and `" "`.
 
 ## Implementing `props`
 
