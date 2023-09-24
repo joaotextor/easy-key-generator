@@ -99,5 +99,25 @@ describe("Key Generator Tests", () => {
 
       expect(code[0]).toHaveLength(7);
     });
+
+    it("Should generate a key with the format informed in 'groupFormat' property. ", () => {
+      const groupFormat = "LLNLN";
+      const groupFormatArray = Array.from(groupFormat);
+
+      sut = new CodeGenerator(5, {
+        groupFormat: groupFormat,
+      });
+      const codes = sut.generate();
+      const codeArray = Array.from(codes[0]!);
+
+      for (let char in codeArray) {
+        const codeChar = Number(codeArray[char]);
+        if (groupFormatArray[char] === "L") {
+          expect(codeChar).toBeNaN;
+          return;
+        }
+        expect(codeChar).not.toBeNaN();
+      }
+    });
   });
 });
