@@ -22,7 +22,7 @@ jobs:
         run: npm ci
 
       - name: increment version
-        run: npm version patch
+        run: git config user.email "joaotextor@gmail.com" && git config user.name "João Textor" && npm version patch
 
       - name: run tests
         run: npm run lint && npm run test
