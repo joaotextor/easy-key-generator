@@ -1,6 +1,0 @@
-dist
-node_modules
-.prettierrc
-.eslintrc.js
-.editorconfig
-tests
