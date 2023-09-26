@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: 18.x
           cache: "npm"
-          registry-url: "https://registry.npmjs.org/"
+          registry-url: "https://registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}"
 
       - name: install dependencies
         run: npm ci
