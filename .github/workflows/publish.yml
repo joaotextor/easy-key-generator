@@ -7,7 +7,7 @@ on:
     branches:
       - "**"
 
-concurrency: ${{ github.workflow }}-${{ github.ref }}
+# concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   publish:
@@ -21,11 +21,12 @@ jobs:
         with:
           node-version: 18.x
           cache: "npm"
+          registry-url: "https://registry.npmjs.org"
 
       - name: Create Release Pull Request or Publish
         id: changesets
         uses: changesets/action@v1
-        with:
-          publish: npm run build
+      - run: npm pack
+      - run: npm publish
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
