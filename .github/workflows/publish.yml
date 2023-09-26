@@ -1,5 +1,36 @@
 name: Publish
 on:
+  push:
+    branches:
+      - "**"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v4
+
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: "npm"
+      
+      - name: install dependencies
+        run: npm ci
+
+      - name: publish
+        uses: changesets/action@v1
+        with: 
+          publish: npm run publish
+
+      - run: npm ci
+      - run: npm run lint && npm run test
+      - run: npm run build
+
+
+on:
   workflow_run:
     workflows: ["CI"]
     types: [completed]
@@ -26,6 +57,8 @@ jobs:
       - name: Create Release Pull Request or Publish
         id: changesets
         uses: changesets/action@v1
+        with:
+          publish: "npm run build"
       - run: npm pack
       - run: npm publish
         env:

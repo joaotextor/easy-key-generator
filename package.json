@@ -12,7 +12,8 @@
     "dev": "tsc --watch",
     "build": "tsup index.ts --format cjs,esm --dts && npx fix-tsup-cjs",
     "lint": "tsc",
-    "test": "jest"
+    "test": "jest",
+    "publish": ""
   },
   "author": "João Textor",
   "license": "MIT",
