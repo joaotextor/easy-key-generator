@@ -2,8 +2,7 @@ name: Publish
 on:
   workflow_run:
     workflows: ["CI"]
-    types:
-      - completed
+    types: [completed]
   push:
     branches:
       - "**"
