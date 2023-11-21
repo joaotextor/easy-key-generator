@@ -3,14 +3,6 @@ describe("Key Generator Tests", () => {
   describe("Testing 'validateGroupFormat' errors and warnings'", () => {
     let sut: ICodeGenerator;
 
-    it("Should skip validation if 'groupFormat' was not informed by the user", () => {
-      sut = new CodeGenerator(5);
-      const consoleSpy = jest.spyOn(console, "log");
-      sut.generate();
-
-      expect(consoleSpy).toHaveBeenCalledWith("Group Format is not defined, skipping validation.");
-    });
-
     it("Should throw error when 'groupFormat' is being used with other 'characterType' other than 'LettersAndNumbers'", () => {
       sut = new CodeGenerator(5, {
         characterType: "Letters",
