@@ -71,7 +71,6 @@ export default class CodeGenerator implements ICodeGenerator {
 
   private static validateGroupFormat(groupFormat: string, characters: string): void {
     if (!groupFormat) {
-      console.log("Group Format is not defined, skipping validation.");
       return;
     }
 
